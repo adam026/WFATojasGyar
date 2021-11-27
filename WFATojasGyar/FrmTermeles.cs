@@ -45,25 +45,22 @@ namespace WFATojasGyar
 
             dgvMain.Sort(Date, ListSortDirection.Ascending);
 
-            connection.Close();
-            connection.Open();
+            reader.Close();
 
             var command1 = new SqlCommand("SELECT Szin FROM Tojas", connection);
             var reader1 = command1.ExecuteReader();
             while (reader1.Read()) cbTojas.Items.Add(reader1[0]);
             cbTojas.SelectedIndex = 0;
-
-            connection.Close();
-            connection.Open();
+            reader1.Close();
 
             var command2 = new SqlCommand("SELECT Nev FROM Nyul", connection); 
             var reader2 = command2.ExecuteReader();
             while (reader2.Read()) cbMunkas.Items.Add(reader2[0]);
             cbMunkas.SelectedIndex = 0;
+            reader2.Close();
 
             connection.Close();
-
-            
+     
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
